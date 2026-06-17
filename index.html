@@ -511,7 +511,7 @@
         <div class="sr-icon">💵</div>
         <div>
           <div class="sr-title">Special $5 Cash Reward</div>
-          <div class="sr-sub" id="srSub">Finish ⭐ <i>The Anxious Generation</i> to unlock real cash from Dad!</div>
+          <div class="sr-sub" id="srSub">Finish ⭐ <i>The Amazing Generation</i> to unlock real cash from Daddy!</div>
         </div>
       </div>
 
@@ -529,7 +529,7 @@
     </div>
   </section>
 
-  <footer>Made with ❤️ by Dad • Summer 2026</footer>
+  <footer>Made with ❤️ by Daddy • Summer 2026</footer>
 </div>
 
 <div id="toast-wrap"></div>
@@ -541,8 +541,8 @@
     <h2>$5 Cash Reward!</h2>
     <p style="font-weight:bold;font-size:1.05rem;">You finished the REQUIRED book! 🎉🧠</p>
     <div class="from-dad">
-      <b>A note from Dad:</b><br>
-      I am SO proud of you for reading <i>The Anxious Generation</i>. That was a real challenge,
+      <b>A note from Daddy:</b><br>
+      I am SO proud of you for reading <i>The Amazing Generation</i>. That was a real challenge,
       and you crushed it. This book matters — and so does the way you think about the world.
       Come find me to collect your <b>$5 cash</b>. You earned every cent! 💜
     </div>
@@ -603,27 +603,27 @@ const BOOKS = [
   },
   {
     id:"counting7s", title:"Counting by 7s", author:"Holly Goldberg Sloan",
-    pages:384, genre:"Realistic Fiction", level:"Challenge", isbn:"9780142426425",
+    pages:384, genre:"Realistic Fiction", level:"Challenge", isbn:"9780803738553",
     badge:"Bonus Champion Cup 🏆", badgeEmoji:"🏆",
     bonus:true,
     note:"This one is a stretch — it's longer than the others at 384 pages. But if you pick it up, you won't be able to put it down. Willow Chance is a genius who sees the world differently, and this book will make you laugh and cry. Consider this your bonus challenge book!",
     desc:"Willow Chance is a misfit genius who loves plants, medicine, and finding patterns in everything — until tragedy strikes and she has to rebuild her world from scratch. One of the most beloved realistic fiction books for smart, curious girls. A deeply funny and moving story."
   },
   {
-    id:"anxious", title:"The Anxious Generation", author:"Jonathan Haidt",
-    pages:385, genre:"Nonfiction", level:"Challenge", isbn:"9780593655030",
+    id:"anxious", title:"The Amazing Generation", author:"Jonathan Haidt & Catherine Price",
+    pages:240, genre:"Nonfiction", level:"Middle", isbn:"9798217111916",
     badge:"Deep Thinker Award 🧠 + $5 Cash!", badgeEmoji:"🧠",
     required:true, rewardAmount:"$5 cash",
-    desc:"⭐ REQUIRED READING. An eye-opening look at how smartphones and social media are reshaping the lives of kids and teens — and what we can do about it. This book will change the way you think about your phone, your friendships, and growing up in today's world. Required reading this summer — and it comes with a special reward for finishing!"
+    desc:"⭐ REQUIRED READING. Your guide to fun and freedom in a screen-filled world! Written just for kids your age, this is packed with facts, comics, and real advice on how to build a happy, confident life that a phone can't hijack. It'll change the way you think about your screen, your friendships, and growing up today. Required reading this summer — and it comes with a special reward for finishing!"
   }
 ];
 
 const MILESTONES = [
   { n:1,  icon:"🍦", title:"Ice Cream Treat",      desc:"Any flavor, any size" },
-  { n:2,  icon:"🎬", title:"Movie Night",          desc:"Her pick, her snacks" },
+  { n:2,  icon:"🍽️", title:"You Pick Dinner",      desc:"Your choice — anything you want" },
   { n:4,  icon:"📚", title:"$20 Bookstore Spree",  desc:"THE BIG GOAL!", goal:true },
-  { n:7,  icon:"🎯", title:"Special Outing",       desc:"Her choice" },
-  { n:10, icon:"🏆", title:"Epic Grand Reward",    desc:"TBD by Dad — legendary status" }
+  { n:7,  icon:"🍝", title:"Dinner Date with Daddy", desc:"Just the two of us" },
+  { n:10, icon:"🏆", title:"Epic Grand Reward",    desc:"TBD by Daddy — legendary status" }
 ];
 
 /* ============ STATE ============ */
@@ -642,7 +642,9 @@ if(!state._milestonesSeen) state._milestonesSeen = [];
 if(typeof state._goalSeen === "undefined") state._goalSeen = false;
 
 /* ============ RENDER BOOKS ============ */
-function coverURL(isbn){ return `https://covers.openlibrary.org/b/isbn/${isbn}-L.jpg`; }
+// ?default=false makes Open Library return a 404 for missing covers (instead of a
+// blank placeholder image), so our styled placeholder fallback can kick in.
+function coverURL(isbn){ return `https://covers.openlibrary.org/b/isbn/${isbn}-L.jpg?default=false`; }
 
 function buildCard(b){
   const s = state[b.id];
@@ -676,7 +678,7 @@ function buildCard(b){
   html += `<div class="details">`;
   html += `<p class="desc">${b.desc}</p>`;
   if(b.bonus) html += `<div class="special-note">🏆 <b>Bonus Challenge Book!</b> ${b.note}</div>`;
-  if(b.required) html += `<div class="reward-note">💵 Finishing this book earns you <b>${b.rewardAmount}</b> — a special reward from Dad!</div>`;
+  if(b.required) html += `<div class="reward-note">💵 Finishing this book earns you <b>${b.rewardAmount}</b> — a special reward from Daddy!</div>`;
 
   html += `<div>
              <div class="rate-label">My star rating:</div>
@@ -851,10 +853,10 @@ function renderRewards(){
   const sr = document.getElementById("specialReward");
   if(state["anxious"].done){
     sr.classList.remove("locked");
-    document.getElementById("srSub").innerHTML = "🎉 UNLOCKED! You finished <i>The Anxious Generation</i> — collect your <b>$5 cash</b> from Dad!";
+    document.getElementById("srSub").innerHTML = "🎉 UNLOCKED! You finished <i>The Amazing Generation</i> — collect your <b>$5 cash</b> from Daddy!";
   } else {
     sr.classList.add("locked");
-    document.getElementById("srSub").innerHTML = "Finish ⭐ <i>The Anxious Generation</i> to unlock real cash from Dad!";
+    document.getElementById("srSub").innerHTML = "Finish ⭐ <i>The Amazing Generation</i> to unlock real cash from Daddy!";
   }
 
   // badge collection
