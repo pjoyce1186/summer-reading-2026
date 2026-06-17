@@ -628,6 +628,15 @@ const MILESTONES = [
 
 /* ============ STATE ============ */
 const STORAGE_KEY = "summerReading2026";
+
+/* One-time data reset: wipes any saved progress exactly once per browser, the
+   first time this version loads. Bump RESET_TOKEN to trigger a fresh wipe again. */
+const RESET_TOKEN = "reset-2026-06-17";
+if(localStorage.getItem("summerReading2026_resetToken") !== RESET_TOKEN){
+  localStorage.removeItem(STORAGE_KEY);
+  localStorage.setItem("summerReading2026_resetToken", RESET_TOKEN);
+}
+
 function loadState(){
   try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; }
   catch(e){ return {}; }
