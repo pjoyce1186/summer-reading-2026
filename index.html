@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Summer Reading Adventure 2026 ☀️📚</title>
+<style>
+  :root {
+    --sun: #ffd23f;
+    --sun-deep: #ffb703;
+    --sky: #4cc9f0;
+    --sky-deep: #2a9fd6;
+    --coral: #ff6b6b;
+    --coral-deep: #e63946;
+    --green: #2ec4b6;
+    --green-deep: #1b9e8f;
+    --leaf: #57cc99;
+    --ink: #2b2d42;
+    --cloud: #fffaf0;
+    --card: #ffffff;
+    --shadow: 0 6px 22px rgba(43, 45, 66, 0.14);
+    --shadow-lg: 0 14px 40px rgba(43, 45, 66, 0.22);
+    --radius: 18px;
+    --easy: #57cc99;
+    --middle: #4cc9f0;
+    --challenge: #ff6b6b;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: "Trebuchet MS", "Segoe UI", Verdana, sans-serif;
+    color: var(--ink);
+    background:
+      radial-gradient(circle at 12% 8%, rgba(255, 210, 63, 0.45), transparent 40%),
+      radial-gradient(circle at 88% 12%, rgba(76, 201, 240, 0.40), transparent 42%),
+      radial-gradient(circle at 50% 100%, rgba(87, 204, 153, 0.35), transparent 50%),
+      linear-gradient(160deg, #fff6e0 0%, #eaf9ff 55%, #f1fff6 100%);
+    background-attachment: fixed;
+    min-height: 100vh;
+    line-height: 1.5;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 18px 16px 80px; }
+
+  /* ---------- Header ---------- */
+  header.hero {
+    text-align: center;
+    padding: 26px 18px 18px;
+  }
+  header.hero h1 {
+    font-size: clamp(1.8rem, 6vw, 3.3rem);
+    line-height: 1.05;
+    letter-spacing: -0.5px;
+    background: linear-gradient(100deg, var(--coral-deep), var(--sun-deep) 45%, var(--sky-deep) 90%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0 2px 0 rgba(255,255,255,0.6);
+    margin-bottom: 6px;
+  }
+  header.hero .sub {
+    font-size: clamp(0.95rem, 2.6vw, 1.15rem);
+    color: #5a5d75;
+    font-weight: bold;
+  }
+  header.hero .sun {
+    display: inline-block;
+    animation: spin 14s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* ---------- Tabs ---------- */
+  .tabs {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    margin: 18px auto 8px;
+    flex-wrap: wrap;
+  }
+  .tab-btn {
+    font: inherit;
+    font-weight: bold;
+    font-size: 1rem;
+    border: 3px solid transparent;
+    background: #ffffffcc;
+    color: var(--ink);
+    padding: 10px 22px;
+    border-radius: 999px;
+    cursor: pointer;
+    box-shadow: var(--shadow);
+    transition: transform .15s, border-color .2s, background .2s;
+  }
+  .tab-btn:hover { transform: translateY(-2px); }
+  .tab-btn.active {
+    background: linear-gradient(120deg, var(--sun), var(--coral));
+    color: #fff;
+    border-color: #fff;
+  }
+
+  /* ---------- Progress panel ---------- */
+  .panel {
+    background: var(--card);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 20px 22px;
+    margin-bottom: 18px;
+  }
+  .progress-top {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .progress-main { flex: 1 1 340px; min-width: 260px; }
+  .progress-main h2 {
+    font-size: 1.5rem;
+    margin-bottom: 4px;
+  }
+  .progress-main .count-line { font-weight: bold; color: #5a5d75; margin-bottom: 10px; }
+  .count-line b { color: var(--coral-deep); font-size: 1.15em; }
+
+  .bar {
+    height: 26px;
+    border-radius: 999px;
+    background: #eef1f6;
+    overflow: hidden;
+    box-shadow: inset 0 2px 6px rgba(0,0,0,0.12);
+    position: relative;
+  }
+  .bar-fill {
+    height: 100%;
+    width: 0%;
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--leaf), var(--sky), var(--sun));
+    background-size: 200% 100%;
+    transition: width 1s cubic-bezier(.16,1,.3,1);
+    animation: shimmer 3s linear infinite;
+  }
+  @keyframes shimmer { to { background-position: 200% 0; } }
+
+  /* Goal callout */
+  .goal-callout {
+    flex: 1 1 300px;
+    min-width: 250px;
+    background: linear-gradient(135deg, #fff3c4, #ffe08a);
+    border: 3px dashed var(--sun-deep);
+    border-radius: var(--radius);
+    padding: 14px 16px;
+    text-align: center;
+    position: relative;
+  }
+  .goal-callout h3 { font-size: 1.1rem; color: #b06d00; }
+  .goal-callout .goal-prog { font-weight: bold; margin: 6px 0; color: var(--ink); }
+  .goal-callout .mini-bar {
+    height: 16px; border-radius: 999px; background:#fff7df; overflow:hidden;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.12);
+  }
+  .goal-callout .mini-fill {
+    height:100%; width:0%; border-radius:999px;
+    background: linear-gradient(90deg, var(--coral), var(--sun-deep));
+    transition: width 1s cubic-bezier(.16,1,.3,1);
+  }
+  .goal-callout.reached {
+    background: linear-gradient(135deg, #c8f7d4, #8ce99a);
+    border-color: var(--green-deep);
+  }
+  .goal-callout.reached h3 { color: var(--green-deep); }
+
+  /* Required status badge */
+  .req-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 14px;
+    padding: 8px 16px;
+    border-radius: 999px;
+    font-weight: bold;
+    background: #f0f2f7;
+    color: #6a6d85;
+    border: 2px solid #dfe3ec;
+    transition: all .3s;
+  }
+  .req-status.done {
+    background: linear-gradient(120deg, #b388ff, #7c4dff);
+    color: #fff;
+    border-color: #fff;
+    box-shadow: 0 6px 18px rgba(124,77,255,0.4);
+  }
+
+  /* ---------- Book grid ---------- */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 20px;
+  }
+
+  .card {
+    background: var(--card);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform .2s, box-shadow .2s;
+    position: relative;
+    border: 3px solid transparent;
+  }
+  .card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); }
+
+  .card.required { border-color: var(--sun-deep); box-shadow: 0 0 0 3px #fff, 0 10px 30px rgba(255,183,3,0.4); }
+
+  .req-banner {
+    background: linear-gradient(100deg, #7c4dff, #b388ff);
+    color: #fff;
+    text-align: center;
+    font-weight: bold;
+    letter-spacing: .5px;
+    padding: 7px;
+    font-size: 0.95rem;
+  }
+
+  .cover-wrap {
+    position: relative;
+    cursor: pointer;
+    background: #eaeef5;
+    aspect-ratio: 2 / 3;
+    overflow: hidden;
+  }
+  .cover-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+  /* placeholder cover */
+  .cover-ph {
+    width:100%; height:100%; display:flex; flex-direction:column;
+    align-items:center; justify-content:center; text-align:center;
+    padding: 18px; color:#fff; font-weight:bold;
+    background: linear-gradient(150deg, var(--sky-deep), var(--green-deep));
+  }
+  .cover-ph .ph-title { font-size: 1.15rem; line-height:1.25; }
+  .cover-ph .ph-by { font-size:.85rem; opacity:.9; margin-top:8px; font-weight:normal; }
+  .cover-ph .ph-icon { font-size: 2.4rem; margin-bottom:10px; }
+
+  /* completed overlay */
+  .check-overlay {
+    position:absolute; inset:0; display:none;
+    align-items:center; justify-content:center;
+    background: rgba(46,196,182,0.45);
+    backdrop-filter: blur(1px);
+  }
+  .check-overlay .ring {
+    width:96px; height:96px; border-radius:50%;
+    background:#fff; display:flex; align-items:center; justify-content:center;
+    box-shadow: var(--shadow-lg);
+    font-size: 3rem; color: var(--green-deep);
+    animation: pop .5s cubic-bezier(.2,1.4,.4,1) both;
+  }
+  .card.done .check-overlay { display:flex; }
+  @keyframes pop { 0%{transform:scale(0)} 100%{transform:scale(1)} }
+
+  /* ribbons */
+  .ribbon {
+    position:absolute; top:12px; right:-34px;
+    transform: rotate(45deg);
+    background: linear-gradient(90deg,#ff8fab,#ff5d8f);
+    color:#fff; font-weight:bold; font-size:.72rem;
+    padding:5px 40px; box-shadow: var(--shadow);
+    z-index:3; letter-spacing:.5px;
+  }
+
+  .card-body { padding: 14px 16px 16px; display:flex; flex-direction:column; gap:8px; flex:1; }
+  .card-body h3.title { font-size:1.12rem; line-height:1.2; cursor:pointer; }
+  .card-body .author { color:#6a6d85; font-weight:bold; font-size:.92rem; }
+
+  .meta-row { display:flex; flex-wrap:wrap; gap:6px; align-items:center; margin-top:2px; }
+  .chip {
+    font-size:.74rem; font-weight:bold; padding:4px 10px; border-radius:999px;
+    background:#eef1f6; color:#5a5d75;
+  }
+  .chip.pages { background:#fff0d6; color:#b06d00; }
+  .badge-diff { font-size:.74rem; font-weight:bold; padding:4px 11px; border-radius:999px; color:#fff; }
+  .badge-diff.Easy { background: var(--easy); }
+  .badge-diff.Middle { background: var(--middle); }
+  .badge-diff.Challenge { background: var(--challenge); }
+
+  .expand-hint { font-size:.8rem; color:var(--sky-deep); font-weight:bold; margin-top:auto; cursor:pointer; user-select:none; }
+  .expand-hint:hover { text-decoration: underline; }
+
+  /* expanded area */
+  .details {
+    display:none;
+    border-top:2px dashed #e7eaf1;
+    margin-top:6px; padding-top:12px;
+    flex-direction:column; gap:12px;
+    animation: fadeIn .3s ease;
+  }
+  .card.expanded .details { display:flex; }
+  @keyframes fadeIn { from{opacity:0; transform:translateY(-6px)} to{opacity:1; transform:none} }
+
+  .desc { font-size:.92rem; color:#3c3f56; }
+
+  .special-note {
+    background: linear-gradient(135deg,#fff0f3,#ffe0e9);
+    border-left:5px solid var(--coral);
+    border-radius:10px; padding:10px 12px; font-size:.88rem; color:#7a2233;
+  }
+  .reward-note {
+    background: linear-gradient(135deg,#ede7ff,#e0d4ff);
+    border-left:5px solid #7c4dff;
+    border-radius:10px; padding:10px 12px; font-size:.88rem; color:#4a2b8f; font-weight:bold;
+  }
+
+  .stars { display:flex; gap:4px; font-size:1.7rem; cursor:pointer; }
+  .stars .star { color:#d9dee8; transition: transform .12s, color .15s; user-select:none; }
+  .stars .star.on { color: var(--sun-deep); }
+  .stars:not(.locked) .star:hover { transform: scale(1.2); }
+  .stars.locked { cursor: default; }
+  .rate-label { font-size:.8rem; color:#6a6d85; font-weight:bold; }
+
+  .note-field {
+    width:100%; border:2px solid #e2e7f0; border-radius:12px;
+    padding:9px 11px; font:inherit; font-size:.9rem; resize:vertical; min-height:54px;
+    background:#fbfcfe;
+  }
+  .note-field:focus { outline:none; border-color: var(--sky); }
+  .note-field:disabled { background:#f4f6fa; color:#555; }
+
+  .btn-complete {
+    font:inherit; font-weight:bold; font-size:1rem;
+    border:none; border-radius:12px; padding:12px;
+    background: linear-gradient(120deg, var(--green), var(--sky-deep));
+    color:#fff; cursor:pointer; box-shadow: var(--shadow);
+    transition: transform .15s, filter .15s;
+  }
+  .btn-complete:hover { transform: translateY(-2px); filter:brightness(1.05); }
+  .btn-complete:active { transform: translateY(0); }
+
+  /* earned badge reveal */
+  .earned {
+    display:none;
+    text-align:center;
+    background: linear-gradient(135deg,#fff7d6,#ffe9a8);
+    border:2px solid var(--sun-deep);
+    border-radius:14px; padding:12px;
+    animation: pop .5s cubic-bezier(.2,1.4,.4,1) both;
+  }
+  .card.done .earned { display:block; }
+  .card.done .btn-complete, .card.done .expand-hint { display:none; }
+  .earned .award { font-size:1.05rem; font-weight:bold; color:#9a6b00; }
+  .earned .stamp { font-size:.8rem; color:#7a7d95; margin-top:4px; }
+  .earned.bonus { background: linear-gradient(135deg,#ffe6f0,#ffc6dd); border-color:#ff5d8f; }
+  .earned.bonus .award { color:#b3145f; }
+  .earned.reward { background: linear-gradient(135deg,#ede7ff,#cdb8ff); border-color:#7c4dff; }
+  .earned.reward .award { color:#5a2bbf; }
+
+  /* ---------- Rewards tab ---------- */
+  .rewards-wrap { display:flex; flex-direction:column; gap:20px; }
+  .section-title { font-size:1.4rem; margin-bottom:4px; }
+  .section-sub { color:#6a6d85; font-weight:bold; margin-bottom:14px; }
+
+  .milestones { display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); gap:16px; }
+  .milestone {
+    background:var(--card); border-radius:var(--radius); padding:16px;
+    box-shadow: var(--shadow); position:relative; border:3px solid #eef1f6;
+    transition: transform .2s;
+  }
+  .milestone:hover { transform: translateY(-3px); }
+  .milestone .ms-icon { font-size:2.2rem; }
+  .milestone .ms-title { font-weight:bold; font-size:1.05rem; margin:6px 0 2px; }
+  .milestone .ms-need { font-size:.85rem; color:#6a6d85; }
+  .milestone.unlocked { border-color: var(--green); background: linear-gradient(135deg,#f0fff6,#d6f7e2); }
+  .milestone.goal { border-style:dashed; border-color: var(--sun-deep); }
+  .milestone.goal.unlocked { border-color: var(--green-deep); }
+  .ms-flag {
+    position:absolute; top:12px; right:12px; font-size:.72rem; font-weight:bold;
+    padding:4px 10px; border-radius:999px; background:#eef1f6; color:#6a6d85;
+  }
+  .milestone.unlocked .ms-flag { background: var(--green); color:#fff; }
+  .ms-goal-tag {
+    display:inline-block; font-size:.7rem; font-weight:bold; color:#b06d00;
+    background:#fff3c4; padding:2px 8px; border-radius:999px; margin-top:8px;
+  }
+
+  .special-reward-card {
+    background: linear-gradient(135deg,#ede7ff,#c9b3ff);
+    border:3px solid #7c4dff; border-radius:var(--radius); padding:18px;
+    box-shadow: var(--shadow); display:flex; gap:14px; align-items:center;
+  }
+  .special-reward-card .sr-icon { font-size:2.6rem; }
+  .special-reward-card .sr-title { font-weight:bold; font-size:1.15rem; color:#4a2b8f; }
+  .special-reward-card .sr-sub { font-size:.88rem; color:#5a3ba0; }
+  .special-reward-card.locked { filter: grayscale(.5); opacity:.85; }
+
+  /* badge collection */
+  .badge-coll { display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:14px; }
+  .badge-cell {
+    text-align:center; background:var(--card); border-radius:14px; padding:14px 10px;
+    box-shadow: var(--shadow); border:2px solid #eef1f6;
+  }
+  .badge-cell.locked { opacity:.45; filter:grayscale(.8); }
+  .badge-cell .bc-emoji { font-size:2rem; }
+  .badge-cell .bc-name { font-size:.82rem; font-weight:bold; margin-top:6px; }
+  .badge-cell .bc-book { font-size:.72rem; color:#6a6d85; margin-top:2px; }
+
+  /* ---------- Toast ---------- */
+  #toast-wrap {
+    position:fixed; bottom:20px; left:50%; transform:translateX(-50%);
+    display:flex; flex-direction:column; gap:10px; z-index:9000; width:min(92vw, 420px);
+  }
+  .toast {
+    background: var(--ink); color:#fff; padding:13px 18px; border-radius:14px;
+    box-shadow: var(--shadow-lg); font-weight:bold; text-align:center;
+    animation: toastIn .4s cubic-bezier(.2,1.3,.4,1) both;
+    border-left: 6px solid var(--sun);
+  }
+  @keyframes toastIn { from{opacity:0; transform:translateY(30px)} to{opacity:1; transform:none} }
+
+  /* ---------- Modal ---------- */
+  #modal {
+    position:fixed; inset:0; z-index:9500; display:none;
+    align-items:center; justify-content:center;
+    background: rgba(20,15,40,0.6); backdrop-filter: blur(4px); padding:18px;
+  }
+  #modal.show { display:flex; animation: fadeIn .3s ease; }
+  .modal-box {
+    background: linear-gradient(160deg,#fff,#f3ecff);
+    border-radius:26px; max-width:460px; width:100%;
+    padding:30px 26px; text-align:center; box-shadow: var(--shadow-lg);
+    border:4px solid #7c4dff;
+    animation: pop .5s cubic-bezier(.2,1.4,.4,1) both;
+    position:relative;
+  }
+  .modal-box .money { font-size:4rem; animation: bounce 1s ease infinite; }
+  @keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-12px)} }
+  .modal-box h2 {
+    font-size:2rem; margin:8px 0;
+    background: linear-gradient(100deg,#7c4dff,#e63946);
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  .modal-box .from-dad {
+    background:#fff; border-radius:14px; padding:14px; margin:14px 0;
+    font-size:.98rem; color:#3c3f56; box-shadow: inset 0 0 0 2px #ece4ff;
+  }
+  .modal-box .from-dad b { color:#7c4dff; }
+  .modal-close {
+    font:inherit; font-weight:bold; font-size:1.05rem; border:none;
+    background: linear-gradient(120deg,#7c4dff,#b388ff); color:#fff;
+    padding:13px 30px; border-radius:14px; cursor:pointer; box-shadow:var(--shadow);
+    transition: transform .15s;
+  }
+  .modal-close:hover { transform: translateY(-2px); }
+
+  /* confetti */
+  #confetti { position:fixed; inset:0; pointer-events:none; z-index:9800; }
+
+  .hidden { display:none !important; }
+
+  footer {
+    text-align:center; margin-top:34px; color:#7a7d95; font-size:.85rem; font-weight:bold;
+  }
+
+  @media (max-width:420px){
+    .grid { grid-template-columns: 1fr; }
+    .progress-main h2 { font-size:1.25rem; }
+  }
+</style>
+</head>
+<body>
+<canvas id="confetti"></canvas>
+
+<div class="wrap">
+  <header class="hero">
+    <h1><span class="sun">☀️</span> Summer Reading Adventure <br>2026 📚</h1>
+    <p class="sub">10 amazing books • 1 epic summer • So many rewards!</p>
+  </header>
+
+  <div class="tabs">
+    <button class="tab-btn active" data-tab="books" onclick="showTab('books')">📚 My Books</button>
+    <button class="tab-btn" data-tab="rewards" onclick="showTab('rewards')">🏆 Rewards</button>
+  </div>
+
+  <!-- ============ BOOKS TAB ============ -->
+  <section id="tab-books">
+    <div class="panel">
+      <div class="progress-top">
+        <div class="progress-main">
+          <h2>Your Reading Progress 🎉</h2>
+          <p class="count-line"><b id="doneCount">0</b> of 10 books read — keep going!</p>
+          <div class="bar"><div class="bar-fill" id="barFill"></div></div>
+          <div class="req-status" id="reqStatus">⭐ Required Reading: not finished yet</div>
+        </div>
+
+        <div class="goal-callout" id="goalCallout">
+          <h3>🎯 The Big Summer Goal</h3>
+          <p class="goal-prog"><span id="goalNow">0</span> of 4 books → $20 bookstore spree!</p>
+          <div class="mini-bar"><div class="mini-fill" id="goalFill"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid" id="bookGrid"></div>
+  </section>
+
+  <!-- ============ REWARDS TAB ============ -->
+  <section id="tab-rewards" class="hidden">
+    <div class="rewards-wrap">
+      <div class="panel special-reward-card locked" id="specialReward">
+        <div class="sr-icon">💵</div>
+        <div>
+          <div class="sr-title">Special $5 Cash Reward</div>
+          <div class="sr-sub" id="srSub">Finish ⭐ <i>The Anxious Generation</i> to unlock real cash from Dad!</div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h2 class="section-title">🏅 Milestone Rewards</h2>
+        <p class="section-sub">Unlock these as you read more books!</p>
+        <div class="milestones" id="milestones"></div>
+      </div>
+
+      <div class="panel">
+        <h2 class="section-title">🎖️ Badge Collection</h2>
+        <p class="section-sub">Earn a unique badge for every book you finish.</p>
+        <div class="badge-coll" id="badgeColl"></div>
+      </div>
+    </div>
+  </section>
+
+  <footer>Made with ❤️ by Dad • Summer 2026</footer>
+</div>
+
+<div id="toast-wrap"></div>
+
+<!-- Required-book celebration modal -->
+<div id="modal">
+  <div class="modal-box">
+    <div class="money">💵</div>
+    <h2>$5 Cash Reward!</h2>
+    <p style="font-weight:bold;font-size:1.05rem;">You finished the REQUIRED book! 🎉🧠</p>
+    <div class="from-dad">
+      <b>A note from Dad:</b><br>
+      I am SO proud of you for reading <i>The Anxious Generation</i>. That was a real challenge,
+      and you crushed it. This book matters — and so does the way you think about the world.
+      Come find me to collect your <b>$5 cash</b>. You earned every cent! 💜
+    </div>
+    <button class="modal-close" onclick="closeModal()">Awesome — close 🎈</button>
+  </div>
+</div>
+
+<script>
+/* ============ BOOK DATA ============ */
+const BOOKS = [
+  {
+    id:"zoe", title:"From the Desk of Zoe Washington", author:"Janae Marks",
+    pages:198, genre:"Realistic Fiction", level:"Middle", isbn:"9780062875853",
+    badge:"Truth Seeker Award 🔍", badgeEmoji:"🔍",
+    desc:"Zoe gets a birthday letter from the incarcerated father she's never met — and secretly starts investigating whether he's actually innocent. Part mystery, part realistic family drama. Named Best Book of the Year by Parents Magazine, Booklist, and Kirkus Reviews. Perfect for fans of realistic fiction who love a good mystery woven in."
+  },
+  {
+    id:"winndixie", title:"Because of Winn-Dixie", author:"Kate DiCamillo",
+    pages:182, genre:"Realistic Fiction", level:"Easy", isbn:"9781536214352",
+    badge:"Best Friend Medal 🐕", badgeEmoji:"🐕",
+    desc:"Ten-year-old Opal goes to the store for groceries and comes home with a dog — and Winn-Dixie changes everything about her summer, her friendships, and what she learns about her absent mother. A beloved Newbery Honor classic that reads like a warm hug."
+  },
+  {
+    id:"reachme", title:"When You Reach Me", author:"Rebecca Stead",
+    pages:199, genre:"Realistic Fiction / Mystery", level:"Middle", isbn:"9780312535513",
+    badge:"Time Detective Badge ⏰", badgeEmoji:"⏰",
+    desc:"Miranda starts finding mysterious notes predicting the future and has to figure out who's sending them before it's too late. A Newbery Medal winner celebrated by readers and authors alike as one of the best mysteries written for kids — once you start, you can't stop."
+  },
+  {
+    id:"firststate", title:"The First State of Being", author:"Erin Entrada Kelly",
+    pages:224, genre:"Realistic Fiction / Sci-Fi", level:"Middle", isbn:"9780063337312",
+    badge:"Future Explorer Award 🚀", badgeEmoji:"🚀",
+    desc:"Winner of the 2025 Newbery Medal and a National Book Award finalist. A time-travel story with real feelings, imperfect characters, and a central question: how do we live in the present when so much is out of our control? Fresh off the shelves and already considered a modern classic."
+  },
+  {
+    id:"frontdesk", title:"Front Desk", author:"Kelly Yang",
+    pages:228, genre:"Realistic Fiction", level:"Middle", isbn:"9781338241365",
+    badge:"Dream Chaser Trophy 🌟", badgeEmoji:"🌟",
+    desc:"Mia Tang's family manages a motel while hiding immigrants from the landlord and dreaming of something bigger. Funny, honest, and genuinely inspiring — a great book for a smart girl with big ambitions who wants stories that feel real."
+  },
+  {
+    id:"smile", title:"Smile", author:"Raina Telgemeier",
+    pages:214, genre:"Graphic Novel / Memoir", level:"Easy", isbn:"9780545132053",
+    badge:"Real Talk Ribbon 😄", badgeEmoji:"😄",
+    desc:"A hilarious and heartfelt graphic novel memoir about Raina navigating middle school — friend drama, braces, crushes, and figuring out who she really is. Reads fast, hits emotionally, and is endlessly relatable. One of the best-selling graphic novels for girls ever written."
+  },
+  {
+    id:"yougofirst", title:"You Go First", author:"Erin Entrada Kelly",
+    pages:234, genre:"Realistic Fiction", level:"Middle", isbn:"9780062414205",
+    badge:"Kindred Spirit Medal 🤝", badgeEmoji:"🤝",
+    desc:"Two 12-year-olds — one in Pennsylvania, one in Louisiana — bond over online Scrabble while each quietly navigating hard things at home. Gentle, emotional, and deeply real. A perfect book for anyone who has ever felt like the odd one out."
+  },
+  {
+    id:"insideout", title:"Inside Out & Back Again", author:"Thanhha Lai",
+    pages:272, genre:"Historical / Realistic Fiction", level:"Middle", isbn:"9780061962783",
+    badge:"World Citizen Badge 🌏", badgeEmoji:"🌏",
+    desc:"Told entirely in short poems, this reads much faster than the page count suggests — most readers finish it in 2-3 sittings. A girl flees Vietnam in 1975 and tries to make sense of America. National Book Award winner. Teaches empathy, history, and the immigrant experience in a format that feels effortless and beautiful."
+  },
+  {
+    id:"counting7s", title:"Counting by 7s", author:"Holly Goldberg Sloan",
+    pages:384, genre:"Realistic Fiction", level:"Challenge", isbn:"9780142426425",
+    badge:"Bonus Champion Cup 🏆", badgeEmoji:"🏆",
+    bonus:true,
+    note:"This one is a stretch — it's longer than the others at 384 pages. But if you pick it up, you won't be able to put it down. Willow Chance is a genius who sees the world differently, and this book will make you laugh and cry. Consider this your bonus challenge book!",
+    desc:"Willow Chance is a misfit genius who loves plants, medicine, and finding patterns in everything — until tragedy strikes and she has to rebuild her world from scratch. One of the most beloved realistic fiction books for smart, curious girls. A deeply funny and moving story."
+  },
+  {
+    id:"anxious", title:"The Anxious Generation", author:"Jonathan Haidt",
+    pages:385, genre:"Nonfiction", level:"Challenge", isbn:"9780593655030",
+    badge:"Deep Thinker Award 🧠 + $5 Cash!", badgeEmoji:"🧠",
+    required:true, rewardAmount:"$5 cash",
+    desc:"⭐ REQUIRED READING. An eye-opening look at how smartphones and social media are reshaping the lives of kids and teens — and what we can do about it. This book will change the way you think about your phone, your friendships, and growing up in today's world. Required reading this summer — and it comes with a special reward for finishing!"
+  }
+];
+
+const MILESTONES = [
+  { n:1,  icon:"🍦", title:"Ice Cream Treat",      desc:"Any flavor, any size" },
+  { n:2,  icon:"🎬", title:"Movie Night",          desc:"Her pick, her snacks" },
+  { n:4,  icon:"📚", title:"$20 Bookstore Spree",  desc:"THE BIG GOAL!", goal:true },
+  { n:7,  icon:"🎯", title:"Special Outing",       desc:"Her choice" },
+  { n:10, icon:"🏆", title:"Epic Grand Reward",    desc:"TBD by Dad — legendary status" }
+];
+
+/* ============ STATE ============ */
+const STORAGE_KEY = "summerReading2026";
+function loadState(){
+  try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; }
+  catch(e){ return {}; }
+}
+function saveState(){ localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
+let state = loadState();
+// shape: state[id] = { done:bool, rating:int, note:str, date:str }
+BOOKS.forEach(b => { if(!state[b.id]) state[b.id] = { done:false, rating:0, note:"", date:"" }; });
+
+/* track which milestones already celebrated so we don't re-toast on reload */
+if(!state._milestonesSeen) state._milestonesSeen = [];
+if(typeof state._goalSeen === "undefined") state._goalSeen = false;
+
+/* ============ RENDER BOOKS ============ */
+function coverURL(isbn){ return `https://covers.openlibrary.org/b/isbn/${isbn}-L.jpg`; }
+
+function buildCard(b){
+  const s = state[b.id];
+  const card = document.createElement("div");
+  card.className = "card" + (s.done ? " done" : "") + (b.required ? " required" : "");
+  card.id = "card-" + b.id;
+
+  let html = "";
+  if(b.required) html += `<div class="req-banner">⭐ REQUIRED READING ⭐</div>`;
+
+  // cover
+  html += `<div class="cover-wrap" onclick="toggleExpand('${b.id}')">`;
+  if(b.bonus) html += `<div class="ribbon">★ BONUS ★</div>`;
+  html += `<img alt="Cover of ${b.title}" src="${coverURL(b.isbn)}"
+              onerror="showPlaceholder(this,'${b.id}')">`;
+  html += `<div class="check-overlay"><div class="ring">✓</div></div>`;
+  html += `</div>`;
+
+  // body
+  html += `<div class="card-body">`;
+  html += `<h3 class="title" onclick="toggleExpand('${b.id}')">${b.title}</h3>`;
+  html += `<div class="author">by ${b.author}</div>`;
+  html += `<div class="meta-row">
+             <span class="badge-diff ${b.level}">${b.level}</span>
+             <span class="chip pages">📖 ${b.pages} pages</span>
+             <span class="chip">${b.genre}</span>
+           </div>`;
+  html += `<div class="expand-hint" onclick="toggleExpand('${b.id}')">▼ Tap to open & track</div>`;
+
+  // details
+  html += `<div class="details">`;
+  html += `<p class="desc">${b.desc}</p>`;
+  if(b.bonus) html += `<div class="special-note">🏆 <b>Bonus Challenge Book!</b> ${b.note}</div>`;
+  if(b.required) html += `<div class="reward-note">💵 Finishing this book earns you <b>${b.rewardAmount}</b> — a special reward from Dad!</div>`;
+
+  html += `<div>
+             <div class="rate-label">My star rating:</div>
+             <div class="stars" id="stars-${b.id}">${starHTML(b.id, s.rating, s.done)}</div>
+           </div>`;
+  html += `<textarea class="note-field" id="note-${b.id}" placeholder="Write a favorite quote or a quick note..."
+              oninput="saveNote('${b.id}', this.value)" ${s.done ? "disabled" : ""}>${escapeHtml(s.note)}</textarea>`;
+
+  html += `<button class="btn-complete" onclick="markComplete('${b.id}')">✓ Mark Complete</button>`;
+
+  const earnedClass = b.bonus ? "bonus" : (b.required ? "reward" : "");
+  html += `<div class="earned ${earnedClass}">
+             <div class="award">🎉 ${b.badge}</div>
+             <div class="stamp" id="stamp-${b.id}">Completed on ${s.date || "—"}</div>
+           </div>`;
+  html += `</div>`; // details
+  html += `</div>`; // body
+
+  card.innerHTML = html;
+  return card;
+}
+
+function starHTML(id, rating, locked){
+  let h = "";
+  for(let i=1;i<=5;i++){
+    h += `<span class="star ${i<=rating?"on":""}" data-v="${i}"
+            ${locked?"":`onclick="setRating('${id}',${i})"`}>★</span>`;
+  }
+  return h;
+}
+
+function escapeHtml(s){
+  return (s||"").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+}
+
+function showPlaceholder(img, id){
+  const b = BOOKS.find(x=>x.id===id);
+  const wrap = img.parentElement;
+  // keep overlay & ribbon, replace just the img
+  const ph = document.createElement("div");
+  ph.className = "cover-ph";
+  ph.innerHTML = `<div class="ph-icon">📚</div>
+                  <div class="ph-title">${b.title}</div>
+                  <div class="ph-by">by ${b.author}</div>`;
+  img.replaceWith(ph);
+}
+
+function renderBooks(){
+  const grid = document.getElementById("bookGrid");
+  grid.innerHTML = "";
+  BOOKS.forEach(b => grid.appendChild(buildCard(b)));
+}
+
+/* ============ INTERACTIONS ============ */
+function toggleExpand(id){
+  document.getElementById("card-"+id).classList.toggle("expanded");
+}
+
+function setRating(id, v){
+  if(state[id].done) return;
+  state[id].rating = v;
+  saveState();
+  document.getElementById("stars-"+id).innerHTML = starHTML(id, v, false);
+}
+
+function saveNote(id, val){
+  state[id].note = val;
+  saveState();
+}
+
+function markComplete(id){
+  const s = state[id];
+  if(s.done) return;
+  s.done = true;
+  s.date = new Date().toLocaleDateString("en-US",{month:"long",day:"numeric",year:"numeric"});
+  saveState();
+
+  const b = BOOKS.find(x=>x.id===id);
+  const card = document.getElementById("card-"+id);
+  card.classList.add("done","expanded");
+  // lock stars + note, refresh
+  document.getElementById("stars-"+id).classList.add("locked");
+  document.getElementById("stars-"+id).innerHTML = starHTML(id, s.rating, true);
+  const noteEl = document.getElementById("note-"+id);
+  if(noteEl) noteEl.disabled = true;
+  const stamp = document.getElementById("stamp-"+id);
+  if(stamp) stamp.textContent = "Completed on " + s.date;
+
+  burstConfetti();
+  toast(`🎖️ Badge unlocked: ${b.badge}`);
+
+  updateProgress();
+
+  // required book → big modal
+  if(b.required){
+    setTimeout(()=> openModal(), 650);
+  }
+}
+
+/* ============ PROGRESS ============ */
+function doneCount(){ return BOOKS.filter(b => state[b.id].done).length; }
+
+function updateProgress(){
+  const done = doneCount();
+  const pct = (done/BOOKS.length)*100;
+  document.getElementById("doneCount").textContent = done;
+  document.getElementById("barFill").style.width = pct + "%";
+
+  // goal (4 books)
+  const goalNow = Math.min(done,4);
+  document.getElementById("goalNow").textContent = goalNow;
+  document.getElementById("goalFill").style.width = (goalNow/4*100) + "%";
+  const callout = document.getElementById("goalCallout");
+  if(done>=4){
+    callout.classList.add("reached");
+    callout.querySelector("h3").textContent = "🎉 GOAL REACHED!";
+    if(!state._goalSeen){
+      state._goalSeen = true; saveState();
+      bigCelebration();
+      toast("📚🎉 4-BOOK GOAL REACHED! $20 bookstore spree unlocked!");
+    }
+  }
+
+  // required status
+  const reqDone = state["anxious"].done;
+  const rs = document.getElementById("reqStatus");
+  if(reqDone){
+    rs.classList.add("done");
+    rs.textContent = "⭐ Required Reading: COMPLETE! 🧠💵";
+  } else {
+    rs.classList.remove("done");
+    rs.textContent = "⭐ Required Reading: not finished yet";
+  }
+
+  // milestone toasts
+  MILESTONES.forEach(m => {
+    if(done>=m.n && !state._milestonesSeen.includes(m.n)){
+      state._milestonesSeen.push(m.n); saveState();
+      toast(`${m.icon} Milestone unlocked: ${m.title}!`);
+      if(m.n!==4) burstConfetti();
+    }
+  });
+
+  renderRewards();
+}
+
+/* ============ REWARDS TAB ============ */
+function renderRewards(){
+  const done = doneCount();
+
+  // milestones
+  const wrap = document.getElementById("milestones");
+  wrap.innerHTML = "";
+  MILESTONES.forEach(m => {
+    const unlocked = done >= m.n;
+    const remain = m.n - done;
+    const cell = document.createElement("div");
+    cell.className = "milestone" + (unlocked?" unlocked":"") + (m.goal?" goal":"");
+    cell.innerHTML = `
+      <span class="ms-flag">${unlocked?"Unlocked! ✓":(remain+" more")}</span>
+      <div class="ms-icon">${m.icon}</div>
+      <div class="ms-title">${m.title}</div>
+      <div class="ms-need">${m.desc}</div>
+      ${m.goal?'<span class="ms-goal-tag">🎯 THE SUMMER GOAL</span>':''}
+      <div class="ms-need" style="margin-top:6px;">
+        ${unlocked ? "🎉 You earned this!" : `📗 Read <b>${remain}</b> more book${remain>1?"s":""} to unlock`}
+      </div>`;
+    wrap.appendChild(cell);
+  });
+
+  // special reward
+  const sr = document.getElementById("specialReward");
+  if(state["anxious"].done){
+    sr.classList.remove("locked");
+    document.getElementById("srSub").innerHTML = "🎉 UNLOCKED! You finished <i>The Anxious Generation</i> — collect your <b>$5 cash</b> from Dad!";
+  } else {
+    sr.classList.add("locked");
+    document.getElementById("srSub").innerHTML = "Finish ⭐ <i>The Anxious Generation</i> to unlock real cash from Dad!";
+  }
+
+  // badge collection
+  const bc = document.getElementById("badgeColl");
+  bc.innerHTML = "";
+  BOOKS.forEach(b => {
+    const earned = state[b.id].done;
+    const cell = document.createElement("div");
+    cell.className = "badge-cell" + (earned?"":" locked");
+    cell.innerHTML = `
+      <div class="bc-emoji">${earned ? b.badgeEmoji : "🔒"}</div>
+      <div class="bc-name">${b.badge}</div>
+      <div class="bc-book">${b.title}</div>`;
+    bc.appendChild(cell);
+  });
+}
+
+/* ============ TABS ============ */
+function showTab(name){
+  document.getElementById("tab-books").classList.toggle("hidden", name!=="books");
+  document.getElementById("tab-rewards").classList.toggle("hidden", name!=="rewards");
+  document.querySelectorAll(".tab-btn").forEach(btn=>{
+    btn.classList.toggle("active", btn.dataset.tab===name);
+  });
+  if(name==="rewards") renderRewards();
+  window.scrollTo({top:0, behavior:"smooth"});
+}
+
+/* ============ MODAL ============ */
+function openModal(){
+  document.getElementById("modal").classList.add("show");
+  bigCelebration();
+}
+function closeModal(){
+  document.getElementById("modal").classList.remove("show");
+}
+
+/* ============ TOAST ============ */
+function toast(msg){
+  const wrap = document.getElementById("toast-wrap");
+  const t = document.createElement("div");
+  t.className = "toast";
+  t.textContent = msg;
+  wrap.appendChild(t);
+  setTimeout(()=>{ t.style.transition="opacity .4s"; t.style.opacity="0"; }, 3600);
+  setTimeout(()=> t.remove(), 4100);
+}
+
+/* ============ CONFETTI ============ */
+const canvas = document.getElementById("confetti");
+const ctx = canvas.getContext("2d");
+let pieces = [];
+function resizeCanvas(){ canvas.width=innerWidth; canvas.height=innerHeight; }
+resizeCanvas();
+addEventListener("resize", resizeCanvas);
+
+const COLORS = ["#ffd23f","#ff6b6b","#4cc9f0","#57cc99","#b388ff","#ffb703"];
+function addPieces(n){
+  for(let i=0;i<n;i++){
+    pieces.push({
+      x: Math.random()*canvas.width,
+      y: -20 - Math.random()*canvas.height*0.3,
+      r: 5+Math.random()*7,
+      c: COLORS[(Math.random()*COLORS.length)|0],
+      vx: -2+Math.random()*4,
+      vy: 2+Math.random()*4,
+      rot: Math.random()*6.28,
+      vr: -0.2+Math.random()*0.4,
+      shape: Math.random()<0.5?"rect":"circ"
+    });
+  }
+  if(!animating) animate();
+}
+function burstConfetti(){ addPieces(110); }
+function bigCelebration(){ addPieces(220); }
+
+let animating=false;
+function animate(){
+  animating=true;
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  pieces.forEach(p=>{
+    p.x+=p.vx; p.y+=p.vy; p.vy+=0.05; p.rot+=p.vr;
+    ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.rot); ctx.fillStyle=p.c;
+    if(p.shape==="rect") ctx.fillRect(-p.r/2,-p.r/2,p.r,p.r*1.6);
+    else { ctx.beginPath(); ctx.arc(0,0,p.r/2,0,6.28); ctx.fill(); }
+    ctx.restore();
+  });
+  pieces = pieces.filter(p => p.y < canvas.height+30);
+  if(pieces.length>0) requestAnimationFrame(animate);
+  else { animating=false; ctx.clearRect(0,0,canvas.width,canvas.height); }
+}
+
+/* ============ INIT ============ */
+function restoreUI(){
+  // re-apply saved ratings/notes/done states are already baked into buildCard,
+  // but lock the stars/notes for completed books
+  BOOKS.forEach(b=>{
+    if(state[b.id].done){
+      const st = document.getElementById("stars-"+b.id);
+      if(st) st.classList.add("locked");
+    }
+  });
+}
+
+renderBooks();
+restoreUI();
+updateProgress();
+// animate progress bar from 0 on first paint
+document.getElementById("barFill").style.width = "0%";
+requestAnimationFrame(()=> setTimeout(updateProgress, 120));
+</script>
+</body>
+</html>
