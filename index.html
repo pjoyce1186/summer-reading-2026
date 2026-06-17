@@ -474,7 +474,7 @@
 <div class="wrap">
   <header class="hero">
     <h1><span class="sun">☀️</span> Summer Reading Adventure <br>2026 📚</h1>
-    <p class="sub">10 amazing books • 1 epic summer • So many rewards!</p>
+    <p class="sub">11 amazing books • 1 epic summer • So many rewards!</p>
   </header>
 
   <div class="tabs">
@@ -488,7 +488,7 @@
       <div class="progress-top">
         <div class="progress-main">
           <h2>Your Reading Progress 🎉</h2>
-          <p class="count-line"><b id="doneCount">0</b> of 10 books read — keep going!</p>
+          <p class="count-line"><b id="doneCount">0</b> of <span id="totalCount">11</span> books read — keep going!</p>
           <div class="bar"><div class="bar-fill" id="barFill"></div></div>
           <div class="req-status" id="reqStatus">⭐ Required Reading: not finished yet</div>
         </div>
@@ -602,6 +602,12 @@ const BOOKS = [
     desc:"Told entirely in short poems, this reads much faster than the page count suggests — most readers finish it in 2-3 sittings. A girl flees Vietnam in 1975 and tries to make sense of America. National Book Award winner. Teaches empathy, history, and the immigrant experience in a format that feels effortless and beautiful."
   },
   {
+    id:"ripley", title:"Forever Ripley", author:"McCall Hoyle",
+    pages:208, genre:"Realistic Fiction", level:"Middle", isbn:"9781639934164",
+    badge:"Loyal Heart Medal 🐾", badgeEmoji:"🐾",
+    desc:"Told from the heart of Ripley — an aging German Shepherd who spent her whole life guarding a wildlife refuge beside Max, the best man she ever knew. After the accident, Max gives her one final job: \"Take care of the girls.\" And Ripley does exactly that, especially for Charlie — the girl she loves even more than peanut butter. A deeply moving middle-grade dog tale about loyalty, love, and holding on to the ones who matter most."
+  },
+  {
     id:"counting7s", title:"Counting by 7s", author:"Holly Goldberg Sloan",
     pages:384, genre:"Realistic Fiction", level:"Challenge", isbn:"9780803738553",
     badge:"Bonus Champion Cup 🏆", badgeEmoji:"🏆",
@@ -623,7 +629,7 @@ const MILESTONES = [
   { n:2,  icon:"🍽️", title:"You Pick Dinner",      desc:"Your choice — anything you want" },
   { n:4,  icon:"📚", title:"$20 Bookstore Spree",  desc:"THE BIG GOAL!", goal:true },
   { n:7,  icon:"🍝", title:"Dinner Date with Daddy", desc:"Just the two of us" },
-  { n:10, icon:"🏆", title:"Epic Grand Reward",    desc:"TBD by Daddy — legendary status" }
+  { n:11, icon:"🏆", title:"Epic Grand Reward",    desc:"Read ALL the books! TBD by Daddy — legendary status" }
 ];
 
 /* ============ STATE ============ */
@@ -794,6 +800,7 @@ function updateProgress(){
   const done = doneCount();
   const pct = (done/BOOKS.length)*100;
   document.getElementById("doneCount").textContent = done;
+  document.getElementById("totalCount").textContent = BOOKS.length;
   document.getElementById("barFill").style.width = pct + "%";
 
   // goal (4 books)
